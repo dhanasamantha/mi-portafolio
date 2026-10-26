@@ -1,11 +1,754 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sam — Technical Artist Unity Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+     <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        espresso: '#2B1E17',
+                        'espresso-card': '#211610',
+                        'espresso-hover': '#38281F',
+                        cream: '#F4EBE1',
+                        'cream-muted': '#D9CDBF',
+                        terracotta: '#9B4D3E',
+                        'terracotta-hover': '#B35A4A',
+                        sage: '#5C7469',
+                        'sage-hover': '#6C887B',
+                        lavender: '#867B9B',
+                        ochre: '#D99B5C',
+                        'ochre-hover': '#EAAB6E',
+                    },
+                    fontFamily: {
+                        heading: ['Plus Jakarta Sans', 'bold', 'sans-serif'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'atelier': '24px',
+                        'atelier-sm': '16px',
+                    },
+                    boxShadow: {
+                        'craft': '0 8px 30px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.08)',
+                        'craft-sm': '0 4px 15px rgba(0, 0, 0, 0.25)',
+                        'badge': '0 2px 8px rgba(0,0,0,0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Handcrafted Atelier Details & Custom Textures */
+        body {
+            background-color: #5d736a;
+            color: #F4EBE1;
+            font-family: 'Montserrat', sans-serif;
+            background-image: radial-gradient(rgba(244, 235, 225, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .craft-border {
+            border: 2px dashed rgba(217, 155, 92, 0.35);
+        }
+
+        .stitch-border {
+            border: 2px solid rgba(244, 235, 225, 0.12);
+            position: relative;
+        }
+
+        .stitch-border::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px dashed rgba(155, 77, 62, 0.4);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #211610;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5C7469;
+            border-radius: 5px;
+            border: 2px solid #211610;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9B4D3E;
+        }
+
+        /* Paper texture overlay for cards */
+        .card-texture {
+            background-color: #211610;
+            background-image: radial-gradient(rgba(217, 155, 92, 0.04) 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+
+        .filter-btn.active {
+            background-color: #9B4D3E;
+            color: #F4EBE1;
+            border-color: #D99B5C;
+        }
+
+        /* Modal Smooth Transitions */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.25s ease-out;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col selection:bg-terracotta selection:text-cream">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-espresso/90 backdrop-blur-md border-b border-cream/10 px-4 sm:px-8 py-4 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            
+            <!-- Logo / Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-40 h-10 rounded-atelier-sm bg-terracotta flex items-center justify-center text-cream font-heading text-xl shadow-craft group-hover:rotate-6 transition-transform">
+                    
+                
+                    <span class="font-heading text-sm text-cream block leading-tight">Sam  ,</span>
+                    <span class="text-sm text-ochre font-medium justify-center">  Technical Artist</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-6 font-medium text-sm">
+                <a href="#proyectos" class="text-cream-muted hover:text-ochre transition-colors py-1">Proyectos</a>
+                <a href="#sobre-mi" class="text-cream-muted hover:text-ochre transition-colors py-1">Sobre Mí</a>
+                <a href="#devlogs" class="text-cream-muted hover:text-ochre transition-colors py-1">Devlogs</a>
+                <a href="#contacto" class="text-cream-muted hover:text-ochre transition-colors py-1">Contacto</a>
+            </nav>
+
+            <!-- CTA Download CV Button -->
+          <div class="hidden sm:flex items-center gap-3">
+                <a href="assets/docs/CV-Aragon Lopez Dhana Samantha.pdf.pdf" 
+                download="CV Samantha Aragon Lopez" 
+                class="flex items-center gap-2 bg-sage hover:bg-sage-hover text-cream px-4 py-2 rounded-atelier-sm text-sm font-semibold shadow-craft transition-all hover:-translate-y-0.5 active:translate-y-0">
+                    <i data-lucide="file-down" class="w-4 h-4"></i>
+                    <span>Descargar CV</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" class="md:hidden p-2 text-cream hover:text-ochre focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-cream/10 mt-3 flex-col gap-3 font-medium">
+            <a href="#proyectos" class="mobile-link block px-3 py-2 rounded-lg hover:bg-espresso-hover text-cream-muted hover:text-cream">Proyectos</a>
+            <a href="#sobre-mi" class="mobile-link block px-3 py-2 rounded-lg hover:bg-espresso-hover text-cream-muted hover:text-cream">Sobre Mí</a>
+            <a href="#devlogs" class="mobile-link block px-3 py-2 rounded-lg hover:bg-espresso-hover text-cream-muted hover:text-cream">Devlogs</a>
+            <a href="#contacto" class="mobile-link block px-3 py-2 rounded-lg hover:bg-espresso-hover text-cream-muted hover:text-cream">Contacto</a>
+            <button onclick="downloadCV()" class="w-full flex items-center justify-center gap-2 bg-sage hover:bg-sage-hover text-cream px-4 py-2.5 rounded-atelier-sm text-sm font-semibold shadow-craft mt-2">
+                <i data-lucide="file-down" class="w-4 h-4"></i>
+                <span>Descargar CV</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 space-y-20">
+
+        <!-- HERO SECTION -->
+        <section class="stitch-border card-texture rounded-atelier p-6 sm:p-10 md:p-12 shadow-craft relative overflow-hidden">
+            <!-- Decorative Corner Badges -->
+           
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Hero Left Info -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl text-cream tracking-wide leading-tight">
+                        Hola, soy <span class="text-ochre">Sam</span>
+                    </h1>
+
+                    <p class="font-heading text-xl sm:text-2xl text-lavender font-medium">
+                        Technical Artist Unity & Digital Designer
+                    </p>
+
+                    <p class="text-cream-muted leading-relaxed text-base sm:text-lg max-w-2xl">
+                        Unifico el arte visual y la programación lógica. Especializada en optimización WebGL, shaders personalizados, pipeline de gráficos 3D/2D dentro de Unity.
+                    </p>
+
+                    <!-- Quick Links & Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#proyectos" class="bg-terracotta hover:bg-terracotta-hover text-cream px-6 py-3 rounded-atelier-sm font-semibold shadow-craft transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                            <span>Ver Proyectos</span>
+                            <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+                        </a>
+
+                        <a href="https://github.com/dhanasamantha" target="_blank" rel="noopener" class="bg-espresso-hover hover:bg-cream/10 border border-cream/20 text-cream px-4 py-3 rounded-atelier-sm font-medium transition-all flex items-center gap-2">
+                            <i data-lucide="github" class="w-5 h-5 text-ochre"></i>
+                            <span>GitHub</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/dhanasamanthaaragon/" target="_blank" rel="noopener" class="bg-espresso-hover hover:bg-cream/10 border border-cream/20 text-cream px-4 py-3 rounded-atelier-sm font-medium transition-all flex items-center gap-2">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-lavender"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right: Avatar/Portrait Workshop Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group w-full max-w-xs sm:max-w-sm">
+                       
+                    <!-- Imagen con el marco ilustrado e interacción hover -->
+                    <div class="w-full h-full overflow-hidden rounded-lg shadow-2xl transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-1">
+                        <img src="assets/mifoto.png" 
+                            alt="Sam - Technical Artist" 
+                            class="w-full h-full object-contain drop-shadow-md">
+                    </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SOBRE MÍ & HABILIDADES (ABOUT & SKILLS) -->
+        <section id="sobre-mi" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cream/10 pb-4">
+                <div>
+                    <h2 class="font-heading text-3xl sm:text-4xl text-cream flex items-center gap-3">
+                        <i data-lucide="user-check" class="text-ochre w-8 h-8"></i>
+                        <span>Sobre Mí & Habilidades</span>
+                    </h2>
+                    <p class="text-cream-muted text-sm sm:text-base mt-1">
+                        Combinando lógica matemática y pasión por el arte en cada píxel y frame.
+                    </p>
+                </div>
+                <button onclick="downloadCV()" class="inline-flex items-center gap-2 text-ochre hover:text-cream text-sm font-semibold transition-colors">
+                 <a href="assets/CV_Sam_Technical_Artist.pdf" 
+                    download="CV_Sam_Technical_Artist.pdf" 
+                    class="inline-flex items-center gap-2 text-ochre hover:text-cream text-sm font-semibold transition-colors">
+                        <span>Ver CV Completo</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Bio Description Box -->
+                <div class="lg:col-span-6 card-texture stitch-border rounded-atelier p-6 sm:p-8 space-y-4">
+                    <h3 class="font-heading text-2xl text-ochre">Sobre mí</h3>
+                    <p class="text-cream-muted leading-relaxed">
+                        Diseñadora Digital especializada en diseños interactivos y arte digital. Con bases sólidas en comunicación visual y
+                        formación en la creación de Game Design Documents (GDD) y desarrollo en Unity, destaco por mi capacidad de traducir
+                        ideas mecánicas y narrativas en esquemas claros y visuales. Busco mi primera oportunidad profesional en la industria de
+                        videojuegos para colaborar en el diseño de interacción, documentación técnica y lógica de juego
+                    </p>
+                    <p class="text-cream-muted leading-relaxed">
+                        Lo que más disfruto de mi trabajo es presenciar cómo una idea abstracta se transforma en un prototipo jugable capaz de despertar emociones en las personas. Siempre estoy abierta a colaborar en proyectos desafiantes, Game Jams e iniciativas que busquen llevar el desarrollo de juegos al siguiente nivel.
+                    </p>
+                </div>
+
+                <!-- Skills & Software Badges Grid -->
+                <div class="lg:col-span-6 card-texture border border-cream/10 rounded-atelier p-6 sm:p-8 space-y-6">
+                    <h3 class="font-heading text-2xl text-cream flex items-center gap-2">
+                        <i data-lucide="wrench" class="text-terracotta w-6 h-6"></i>
+                        <span>Stack Técnico & Herramientas</span>
+                    </h3>
+
+                    <!-- Interactive Badges Container -->
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-xs font-semibold text-ochre uppercase tracking-wider block mb-2.5">Engine & Programación</span>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="bg-espresso hover:bg-terracotta/30 border border-terracotta/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge flex items-center gap-1.5">
+                                    <span> Unity 3D/2D</span>
+                                </span>
+                                <span class="bg-espresso hover:bg-terracotta/30 border border-terracotta/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     C# Scripting
+                                </span>
+                                <span class="bg-espresso hover:bg-terracotta/30 border border-terracotta/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     CSS & HTML5
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-semibold text-sage uppercase tracking-wider block mb-2.5">Arte & Animación</span>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Blender 3D
+                                </span>
+                                <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Adobe IllUstrator
+                                </span>
+                                <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Adobe Photoshop
+                                </span>
+                                <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     UI / UX Toolkit
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Sprite Animation
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     2D/3D Art
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Visual Identity
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Unity Animator
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Adobe Animate
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     After Effects
+                                </span>
+                                 <span class="bg-espresso hover:bg-sage/30 border border-sage/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Maya 3D
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-semibold text-lavender uppercase tracking-wider block mb-2.5">Flujo & Control</span>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="bg-espresso hover:bg-lavender/30 border border-lavender/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     Git / GitHub
+                                </span>
+                                <span class="bg-espresso hover:bg-lavender/30 border border-lavender/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                    Trello / Notion
+                                </span>
+                                <span class="bg-espresso hover:bg-lavender/30 border border-lavender/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                        Scrum / Agile
+                                </span>
+                                <span class="bg-espresso hover:bg-lavender/30 border border-lavender/40 text-cream px-3.5 py-1.5 rounded-full text-sm font-medium transition-all shadow-badge">
+                                     GDD
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROYECTOS (PROJECTS GRID WITH FILTERS) -->
+        <section id="proyectos" class="space-y-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-cream/10 pb-4">
+                <div>
+                    <h2 class="font-heading text-3xl sm:text-4xl text-cream flex items-center gap-3">
+                        <i data-lucide="folder-kanban" class="text-terracotta w-8 h-8"></i>
+                        <span>Proyectos Destacados</span>
+                    </h2>
+                    <p class="text-cream-muted text-sm sm:text-base mt-1">
+                        Sistemas de shader, prototipos indies y desarrollo técnico.
+                    </p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 bg-espresso p-1.5 rounded-atelier-sm border border-cream/10">
+                    <button onclick="filterProjects('todos')" class="filter-btn active px-4 py-1.5 rounded-xl text-xs font-semibold transition-all">Todos</button>
+                    <button onclick="filterProjects('unity')" class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-cream-muted hover:text-cream transition-all">Unity</button>
+                    <button onclick="filterProjects('techart')" class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-cream-muted hover:text-cream transition-all">Tech Art</button>
+                    <button onclick="filterProjects('gamejam')" class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-cream-muted hover:text-cream transition-all">Game Jams</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid Container -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: Pack & Pick -->
+                <div class="project-card card-texture border-2 border-cream/10 hover:border-ochre/50 rounded-atelier p-6 shadow-craft transition-all hover:-translate-y-1.5 group flex flex-col justify-between" data-category="unity techart">
+                    <div class="space-y-4">
+                        <!-- Media Container -->
+                        <div class="aspect-video w-full rounded-atelier-sm bg-espresso overflow-hidden relative border border-cream/10">
+                            <img src="assets/mainmanu.png" alt="Pack & Pick Game" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/800x450/211610/D99B5C?text=Pack+%26+Pick+Simulator';">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="bg-ochre/90 text-espresso text-xs font-bold px-2.5 py-1 rounded-full">Unity 3D</span>
+                                <span class="bg-espresso/80 text-cream text-xs px-2.5 py-1 rounded-full border border-cream/20">Cozy Sim</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="font-heading text-2xl text-cream group-hover:text-ochre transition-colors">Pack & Pick</h3>
+                            <p class="text-xs text-lavender font-mono">Simulador de Tienda de Antigüedades</p>
+                            <p class="text-cream-muted text-sm leading-relaxed">
+                                Juego acogedor centrado en la inspección, reparación y empaque de objetos antiguos. En desarrollo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-espresso px-2.5 py-1 rounded-md text-cream-muted border border-cream/10">GDD</span>
+                            <span class="text-xs bg-espresso px-2.5 py-1 rounded-md text-cream-muted border border-cream/10">Unity 2D Development</span>
+                            <span class="text-xs bg-espresso px-2.5 py-1 rounded-md text-cream-muted border border-cream/10">C# Physics</span>
+                        </div>
+
+                        <button onclick="openModal('pack-pick')" class="w-full bg-espresso-hover hover:bg-terracotta text-cream py-2.5 rounded-atelier-sm font-semibold text-sm transition-colors flex items-center justify-center gap-2 border border-cream/10">
+                            <span>Ver detalles del proyecto</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: DummyGublin -->
+                <div class="project-card card-texture border-2 border-cream/10 hover:border-terracotta/50 rounded-atelier p-6 shadow-craft transition-all hover:-translate-y-1.5 group flex flex-col justify-between" data-category="gamejam unity">
+                    <div class="space-y-4">
+                        <div class="aspect-video w-full rounded-atelier-sm bg-espresso overflow-hidden relative border border-cream/10">
+                            <img src="assets/portadaitchio.png" alt="DummyGublin Game Jam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/800x450/211610/9B4D3E?text=DummyGublin+Witch+Game';">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="bg-terracotta text-cream text-xs font-bold px-2.5 py-1 rounded-full">Game Jam </span>
+                                <span class="bg-espresso/80 text-cream text-xs px-2.5 py-1 rounded-full border border-cream/20">2D </span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="font-heading text-2xl text-cream group-hover:text-terracotta transition-colors">DummyGublin</h3>
+                            <p class="text-xs text-lavender font-mono"> Brewing Craft Game</p>
+                            <p class="text-cream-muted text-sm leading-relaxed">
+                                Videojuego desarrollado en 48 horas para una Game Jam. Encargada del Technical Art, Game Design, UI, Development, Level Design.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-espresso px-2.5 py-1 rounded-md text-cream-muted border border-cream/10">2D Art</span>
+                            <span class="text-xs bg-espresso px-2.5 py-1 rounded-md text-cream-muted border border-cream/10">Mechanics</span>
+                            <span class="text-xs bg-espresso px-2.5 py-1 rounded-md text-cream-muted border border-cream/10">Game Feel</span>
+                        </div>
+
+                        <button onclick="openModal('dummy-gublin')" class="w-full bg-espresso-hover hover:bg-terracotta text-cream py-2.5 rounded-atelier-sm font-semibold text-sm transition-colors flex items-center justify-center gap-2 border border-cream/10">
+                            <span>Ver detalles del proyecto</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     
+
+        <!-- CONTACTO & FOOTER FORM -->
+        <section id="contacto" class="stitch-border card-texture rounded-atelier p-6 sm:p-10 md:p-12 shadow-craft space-y-8">
+            <div class="max-w-3xl mx-auto text-center space-y-3">
+                <span class="text-ochre text-xs font-semibold uppercase tracking-widest block">¿Tienes una idea o proyecto en mente?</span>
+                <h2 class="font-heading text-3xl sm:text-5xl text-cream">Hablemos y Cremos Algo Increíble</h2>
+                <p class="text-cream-muted text-sm sm:text-base">
+                    Escríbeme para colaboraciones en videojuegos, desarrollo de shaders personalizados o consultoría de Technical Art.
+                </p>
+            </div>
+
+            <!-- Handcrafted Input Form -->
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="max-w-2xl mx-auto space-y-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="name" class="block text-xs font-semibold text-cream-muted mb-1.5">Tu Nombre</label>
+                        <input type="text" id="name" required placeholder="Ej. Ana García" class="w-full bg-espresso border-2 border-cream/15 rounded-atelier-sm px-4 py-3 text-cream placeholder-cream-muted/40 focus:outline-none focus:border-ochre transition-colors text-sm">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs font-semibold text-cream-muted mb-1.5">Tu Correo Electrónico</label>
+                        <input type="email" id="email" required placeholder="ana@estudio.com" class="w-full bg-espresso border-2 border-cream/15 rounded-atelier-sm px-4 py-3 text-cream placeholder-cream-muted/40 focus:outline-none focus:border-ochre transition-colors text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="subject" class="block text-xs font-semibold text-cream-muted mb-1.5">Asunto / Tipo de Proyecto</label>
+                    <select id="subject" class="w-full bg-espresso border-2 border-cream/15 rounded-atelier-sm px-4 py-3 text-cream focus:outline-none focus:border-ochre transition-colors text-sm">
+                        <option value="unity-art">Technical Art Unity / Shaders</option>
+                        <option value="full-game">Desarrollo de Videojuego Indie</option>
+                        <option value="ui-ux">Diseño e Implementación UI/UX</option>
+                        <option value="other">Otro mensaje</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="message" class="block text-xs font-semibold text-cream-muted mb-1.5">Mensaje</label>
+                    <textarea id="message" rows="4" required placeholder="Cuéntame sobre tu proyecto, plazos o dudas..." class="w-full bg-espresso border-2 border-cream/15 rounded-atelier-sm px-4 py-3 text-cream placeholder-cream-muted/40 focus:outline-none focus:border-ochre transition-colors text-sm resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-semibold py-3.5 rounded-atelier-sm shadow-craft transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span>Enviar Mensaje</span>
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-cream/10 bg-espresso-card py-8 px-4 sm:px-8 mt-12 text-center sm:text-left">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream-muted">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-sage"></span>
+                <span>© 2026 Sam — Technical Artist Unity.</span>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex items-center gap-6">
+                <a href="https://github.com/dhanasamantha" target="_blank" rel="noopener" class="hover:text-ochre transition-colors flex items-center gap-1">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/dhanasamanthaaragon/" target="_blank" rel="noopener" class="hover:text-ochre transition-colors flex items-center gap-1">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://wooliesam.itch.io/" target="_blank" rel="noopener" class="hover:text-ochre transition-colors flex items-center gap-1">
+                    <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+                    <span>Itch.io</span>
+                </a>
+            
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE PROJECT DETAILS MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-espresso/80 backdrop-blur-sm flex items-center justify-center p-4 hidden transition-opacity">
+        <div class="card-texture stitch-border rounded-atelier max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-craft relative space-y-6">
+            
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-espresso hover:bg-terracotta p-2 rounded-full text-cream border border-cream/20 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Dynamic Modal Content Area -->
+            <div id="modal-content" class="space-y-4">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <div class="pt-4 border-t border-cream/10 flex justify-end">
+                <button onclick="closeModal()" class="bg-espresso-hover hover:bg-cream/10 text-cream px-5 py-2 rounded-atelier-sm text-sm font-semibold border border-cream/20">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST MESSAGE -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-sage text-cream px-5 py-3 rounded-atelier-sm shadow-craft font-medium text-sm border border-cream/20 flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-300">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-cream"></i>
+        <span id="toast-message">Mensaje enviado exitosamente.</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Portfolio Projects Modal Data
+        const projectsData = {
+            'pack-pick': {
+                title: 'Pack & Pick — Cozy Antique Simulator',
+                subtitle: 'Unity 3D URP & Custom Inspector Tooling',
+                tags: ['Unity URP', 'C# Physics', 'Shader Graph', 'Level Design'],
+                image: 'assets/mainmanu.png',
+                description: 'Pack & Pick es un simulador narrativo y relajante donde el jugador gestiona una pequeña tienda de antigüedades. Mis tareas principales incluyeron el diseño de shaders de polvo interactivos que se limpian mediante cepillo, sombras suaves estilizadas para objetos pequeños y la lógica de inspección 3D con rotación suave.',
+                highlights: [
+                    'Shader interactivo de limpieza con textura de acumulación en tiempo real.',
+                    'Herramienta personalizada en Unity Editor para catalogar objetos en segundos.',
+                    'Optimización de mallas 3D para mantener 60 FPS estables.'
+                ]
+            },
+            'dummy-gublin': {
+                title: 'DummyGublin — Witch Brewing Game',
+                subtitle: 'Game Jam Winner (48h Challenge)',
+                tags: ['2D Shaders', 'Particle FX', 'Game Feel', 'C#'],
+                image: 'assets/portadaitchio.png',
+                description: 'Desarrollado durante un fin de semana para una Game Jam temática. Asumí el rol de Technical Artist encargándome de la respuesta visual al mezclar ingredientes en un caldero mágico.',
+                highlights: [
+                    'Shader de líquido 2D con efecto de burbujeo procedural por onda senoidal.',
+                    'Sistema de partículas con colores dinámicos según los ingredientes agregados.',
+                    'Retroalimentación háptica y screen shake ajustado para máximo Game Feel.'
+                ]
+            },
+            'webgl-ds': {
+                title: 'WebGL Interactive DS Showcase',
+                subtitle: '3D Console Model & Custom Lighting',
+                tags: ['Three.js', 'WebGL', 'Lightmapping', 'Low-Poly'],
+                image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+                description: 'Un experimento de renderizado ligero diseñado para la web. Muestra un modelo retro interactivo con texturas horneadas en Blender y un visor responsivo adaptable a dispositivos móviles.',
+                highlights: [
+                    'Texturas PBR horneadas a mapas de emisión y albedo livianos.',
+                    'Carga en menos de 1.5 segundos con compresión Draco.',
+                    'Soporte completo de eventos táctiles para rotar y hacer zoom.'
+                ]
+            },
+            'dentallica-ui': {
+                title: 'Dentallica Diegetic Interface',
+                subtitle: 'Unity UI Toolkit & Dynamic Animations',
+                tags: ['UI Toolkit', 'C# EventSystem', 'Accessibility', 'Animations'],
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
+                description: 'Sistema completo de interfaz de usuario creado dentro de Unity UI Toolkit para un título táctico. El diseño integra menús diegéticos que responden a las acciones del jugador en pantalla.',
+                highlights: [
+                    'Navegación nativa fluida con Gamepad, Teclado y Mouse.',
+                    'Efectos de sonido coordinados con transiciones de interfaz.',
+                    'Modo de alto contraste integrado para accesibilidad.'
+                ]
+            },
+            'devlog-1': {
+                title: 'Devlog #01 — Shader de Hojas & Viento Procedural',
+                subtitle: 'Nota de Desarrollo Técnico',
+                tags: ['URP', 'Vertex Displacement', 'Perlin Noise'],
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+                description: 'En esta entrada explico paso a paso cómo creamos un efecto de viento en vegetación sin depender de simulaciones físicas costosas. Usamos deformación por vértice en el Shader Graph impulsado por un mapa de ruido perlin en loop.',
+                highlights: [
+                    'Ahorro del 40% de llamadas de dibujo en escenas forestales.',
+                    'Parámetros expuestos para controlar velocidad y fuerza por zona.'
+                ]
+            },
+            'devlog-2': {
+                title: 'Devlog #02 — Optimización WebGL Extrema',
+                subtitle: 'Nota de Desarrollo Técnico',
+                tags: ['WebGL', 'Build Size', 'Crunch Compression'],
+                image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+                description: 'Guía práctica para reducir drásticamente el tiempo de carga en juegos exportados a WebGL en Unity. Analizamos cómo recortar bibliotecas no utilizadas y optimizar texturas.',
+                highlights: [
+                    'Reducción de tamaño total de 80MB a 18MB.',
+                    'Mejora de tasa de retención de usuarios en navegadores móviles.'
+                ]
+            }
+        };
+
+        // Filter Projects Category
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                const categories = card.getAttribute('data-category');
+                if (category === 'todos' || categories.includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Open Modal Function
+        function openModal(id) {
+            const data = projectsData[id];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="aspect-video w-full rounded-atelier-sm bg-espresso overflow-hidden border border-cream/10">
+                        <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-ochre">${data.subtitle}</span>
+                        <h3 class="font-heading text-2xl text-cream">${data.title}</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2 py-1">
+                        ${data.tags.map(tag => `<span class="bg-espresso text-cream-muted text-xs px-2.5 py-1 rounded-md border border-cream/10">${tag}</span>`).join('')}
+                    </div>
+                    <p class="text-cream-muted text-sm leading-relaxed">${data.description}</p>
+                    <div class="bg-espresso p-4 rounded-atelier-sm border border-cream/10 space-y-2">
+                        <span class="text-xs font-bold text-sage uppercase tracking-wider block">Puntos Destacados</span>
+                        <ul class="list-disc list-inside text-xs text-cream-muted space-y-1">
+                            ${data.highlights.map(h => `<li>${h}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        // Close Modal Function
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Download CV Handler
+        function downloadCV() {
+            showToast("Iniciando descarga del Curriculum Vitae de Sam...");
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contact-form');
+            showToast("¡Gracias por tu mensaje! Me pondré en contacto muy pronto.");
+            form.reset();
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('project-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
